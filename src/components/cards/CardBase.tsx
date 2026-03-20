@@ -41,11 +41,11 @@ const W = 170
 const H = 238
 const POS = {
   mana:   { left: 14, top: 20,  size: 32 },
-  art:    { top: 22,  left: 18, right: 18, height: 88 },
+  art:    { top: 16,  left: 16, right: 16, height: 100 },
   name:   { top: 108, left: 18, right: 18, height: 22 },
   text:   { top: 148, left: 28, right: 28, bottom: 52 },
   attack: { left: 12, bottom: 26, size: 32 },
-  health: { right: 14, bottom: 26, size: 32 },
+  health: { right: 10, bottom: 26, size: 32 },
   cr:     { right: 14, top: 20,  size: 26 },
 }
 
@@ -93,13 +93,15 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
         <img
           src="/card.png"
           draggable={false}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', userSelect: 'none' }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', userSelect: 'none', zIndex: 1 }}
         />
+
+
 
         {/* Shimmer on hover */}
         {isHovered && (
           <div style={{
-            position: 'absolute', inset: 0, zIndex: 10, pointerEvents: 'none',
+            position: 'absolute', inset: 0, zIndex: 9, pointerEvents: 'none',
             background: `linear-gradient(${108 + hoverX * 70}deg, transparent 20%, rgba(255,255,255,0.06) 38%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 62%, transparent 80%)`,
           }} />
         )}
@@ -108,7 +110,7 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
         <div style={{
           position: 'absolute', left: POS.mana.left, top: POS.mana.top,
           width: POS.mana.size, height: POS.mana.size,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
         }}>
           <span style={{ fontSize: '16px', fontWeight: 900, color: '#fff', textShadow: '0 1px 6px rgba(0,0,0,1)' }}>
             {def.manaCost}
@@ -120,7 +122,7 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
           <div style={{
             position: 'absolute', right: POS.cr.right, top: POS.cr.top,
             width: POS.cr.size, height: POS.cr.size,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
             borderRadius: '50%',
             background: def.classTag === 'WARLOCK'
               ? 'radial-gradient(ellipse at 35% 30%, #c084fc, #6d28d9)'
@@ -134,20 +136,9 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
           </div>
         )}
 
-        {/* Art */}
-        <div style={{
-          position: 'absolute',
-          top: POS.art.top, left: POS.art.left, right: POS.art.right, height: POS.art.height,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, overflow: 'hidden',
-        }}>
-          <span style={{ fontSize: '48px', lineHeight: 1, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))' }}>
-            {art}
-          </span>
-        </div>
-
         {/* Ward */}
         {def.hasWard && (
-          <div style={{ position: 'absolute', top: POS.art.top + 1, right: POS.art.right + 1, zIndex: 3, fontSize: '11px' }}>
+          <div style={{ position: 'absolute', top: POS.art.top + 1, right: POS.art.right + 1, zIndex: 10, fontSize: '11px' }}>
             🛡
           </div>
         )}
@@ -158,7 +149,7 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
           const svgH = 28
           const pad = 6
           return (
-            <div style={{ position: 'absolute', top: POS.name.top + 1, left: POS.name.left, width: nameW, height: svgH, zIndex: 2 }}>
+            <div style={{ position: 'absolute', top: POS.name.top + 1, left: POS.name.left, width: nameW, height: svgH, zIndex: 10 }}>
               <svg width={nameW} height={svgH} viewBox={`0 0 ${nameW} ${svgH}`} overflow="visible">
                 <defs>
                   <path id="nameArc" d={`M ${pad},${svgH - 4} Q ${nameW / 2},${4} ${nameW - pad},${svgH - 4}`} />
@@ -186,7 +177,7 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
         <div style={{
           position: 'absolute',
           top: POS.text.top, left: POS.text.left, right: POS.text.right, bottom: POS.text.bottom,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, overflow: 'hidden',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, overflow: 'hidden',
         }}>
           <span style={{ fontSize: '11px', fontWeight: 800, color: '#0d0700', textAlign: 'center', lineHeight: 1.25, display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden', textRendering: 'geometricPrecision', WebkitFontSmoothing: 'antialiased' } as React.CSSProperties}>
             {cardText}
@@ -198,7 +189,7 @@ export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY =
           <div style={{
             position: 'absolute', left: POS.attack.left, bottom: POS.attack.bottom,
             width: POS.attack.size, height: POS.attack.size,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
           }}>
             <span style={{ fontSize: '16px', fontWeight: 900, color: '#fff', textShadow: '0 1px 6px rgba(0,0,0,1)' }}>
               {instance.currentAttack}
