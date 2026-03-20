@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(cd \"C:/Users/simli/Desktop/cards\" && npm install 2>&1 | tail -10)",
+      "Bash(cd \"C:/Users/simli/Desktop/cards\" && npx tsc --noEmit 2>&1)",
+      "Bash(cd \"C:/Users/simli/Desktop/cards\" && npm run dev -- --open)",
+      "Bash(cd \"C:/Users/simli/Desktop/cards\" && npm install 2>&1 | tail -5)",
+      "Bash(cd \"C:/Users/simli/Desktop/cards\" && npx tsc --noEmit -p tsconfig.app.json 2>&1)",
+      "Bash(curl -s http://localhost:5175 -o /dev/null -w \"%{http_code}\" && curl -s http://localhost:3001 -o /dev/null -w \" %{http_code}\")",
+      "Bash(cd C:/Users/simli/Desktop/cards && npx tsc --noEmit 2>&1 | head -50)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)",
+      "Bash(netstat -ano)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
