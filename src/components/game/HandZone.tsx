@@ -109,7 +109,6 @@ export function HandZone() {
       {player.hand.map((instance, idx) => {
         const def = getCard(instance.definitionId)
         let manaCost = def.manaCost
-        const crCost = def.classResourceCost ?? 0
 
         if (def.cardType === 'SPELL') {
           manaCost = Math.max(0, manaCost - constants.spellCostReduction)
