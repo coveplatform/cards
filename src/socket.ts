@@ -1,4 +1,4 @@
 import { io } from 'socket.io-client'
 
-// Single shared socket instance
-export const socket = io('http://localhost:3001', { autoConnect: false })
+// Single shared socket instance — connects to same origin in production
+export const socket = io({ autoConnect: false })
