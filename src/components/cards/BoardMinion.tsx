@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { CardInstance } from '../../types'
 import { getCard } from '../../data/registry'
-import { getArt } from '../../data/cardArt'
 
 interface Props {
   instance: CardInstance
@@ -27,7 +26,7 @@ export function BoardMinion({
   onClick,
 }: Props) {
   const def = getCard(instance.definitionId)
-  const art = getArt(instance.definitionId)
+
   const [isHovered, setIsHovered] = useState(false)
 
   const isExhausted = instance.hasAttackedThisTurn && !instance.isSummonSick

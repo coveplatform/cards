@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useGameStore } from '../../store/gameStore'
-import { HeroZone, classColors } from './HeroZone'
+import { HeroZone } from './HeroZone'
 import { BoardZone } from './BoardZone'
 import { HandZone } from './HandZone'
 import { BoundPassives } from './BoundPassives'

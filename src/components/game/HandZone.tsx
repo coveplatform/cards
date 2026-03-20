@@ -116,8 +116,7 @@ export function HandZone() {
           if (player.cardsPlayedThisTurn === 0) manaCost = Math.max(0, manaCost - constants.firstCardCostReduction)
         }
 
-        const canAfford = player.manaPool >= manaCost && player.classResource >= crCost
-        const boardFull = def.cardType === 'MINION' && player.board.length >= 7
+
         const isSelected = selectedCardInstanceId === instance.instanceId
         const isDragging = dragState?.instanceId === instance.instanceId
         const isHovered = hoverInfo?.id === instance.instanceId && !dragState

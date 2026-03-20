@@ -1,7 +1,6 @@
 import type { CardDefinition } from '../../types/card'
 import type { CardInstance } from '../../types'
 import { getCard } from '../../data/registry'
-import { getArt } from '../../data/cardArt'
 
 interface Props {
   instance: CardInstance
@@ -57,7 +56,7 @@ const glowColors: Record<string, string> = {
 
 export function CardBase({ instance, isSelected, isHovered, hoverX = 0, hoverY = 0, onClick }: Props) {
   const def = getCard(instance.definitionId)
-  const art = getArt(instance.definitionId)
+
   const cardText = getCardText(def)
   const isMinion = def.cardType === 'MINION'
   const glow = glowColors[def.classTag] ?? glowColors.NEUTRAL
